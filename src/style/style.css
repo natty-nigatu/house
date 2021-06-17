@@ -1,0 +1,53 @@
+.left-pane{
+    -fx-background-color: #ececec;
+}
+
+.left-top-pane{
+    -fx-background-color: white;
+    -fx-background-radius: 40;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.scroll-pane{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.scroll-pane > .viewport{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+
+.search-button{
+    -fx-background-color: #023047;
+    -fx-background-radius: 20;
+    -fx-text-fill: white;
+}
+
+.category-combo{
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-border-color: #023047;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-text-fill: white;
+}
+.shadow{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 10);
+}
+
+.top-pane{
+    -fx-background-color: #219ebc;
+}
+
+.title-pane{
+    -fx-background-color: #fb8500;
+    -fx-background-radius: 50;
+}
+
+.agent-pane{
+
+    -fx-background-color: #ffb703;
+    -fx-background-radius: 50;
+}
