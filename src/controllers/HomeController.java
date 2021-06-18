@@ -1,17 +1,23 @@
 package controllers;
 
 import data.Category;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import models.House;
+import program.Main;
 
 import java.io.File;
 import java.net.URL;
@@ -20,6 +26,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
+
+    @FXML
+    private Button btnLogin;
 
     @FXML
     private ComboBox<String> comboCategory;
@@ -57,15 +66,15 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         comboCategory.setItems(Category.getAll());
-        reload(1);
+        reload(0);
 
     }
 
     private void reload(int category){
         List<House> houseList = getData(category);
 
-        if (houseList.size() > 1 ) {
-            setChosenListing(houseList.get(1));
+        if (houseList.size() > 0 ) {
+            setChosenListing(houseList.get(0));
 
             listingListener = new ListingListener() {
                 @Override
@@ -79,7 +88,7 @@ public class HomeController implements Initializable {
 
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("../view/listing.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("../views/listing.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
                 StackPane stack = new StackPane(anchorPane);
                 stack.setStyle("-fx-background-color: white; -fx-background-radius: 40px;" +
@@ -103,48 +112,44 @@ public class HomeController implements Initializable {
         imageView.setImage(house.getImage());
         lblCategory.setText(Category.get(house.getCategory()));
         lblPrice.setText(Integer.toString(house.getPrice()));
+        lblFeatures.setText(house.getFeatures());
+        lblAgentName.setText(house.getAgent().getName());
+        lblAgentEmail.setText(house.getAgent().getEmail());
+        lblAgentPhone.setText(Integer.toString(house.getAgent().getPhone()));
     }
 
     private List<House> getData(int category){
 
-        List<House> list = new ArrayList<>();
+        if (category < 0)
+            category = 0;
 
-        House house = new House();
-        house.setTitle("House 1 Apartment iasldkfjaskldfjas faklafsj ");
-        house.setCategory(1);
-        house.setPrice(12345);
-        house.setImage(new File("src/img/1.jpg"));
-        list.add(house);
+        try{
+            return Main.server.getListings(category);
 
-        house = new House();
-        house.setTitle("Luxury Apartment iasldkfjaskldfjas faklafsj ");
-        house.setCategory(2);
-        house.setPrice(12345);
-        house.setImage(new File("src/img/2.jpg"));
-        list.add(house);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
 
-        house = new House();
-        house.setTitle("Home iasldkfjaskldfjas faklafsj ");
-        house.setCategory(3);
-        house.setPrice(12345);
-        house.setImage(new File("src/img/3.jpg"));
-        list.add(house);
+        return null;
+    }
 
-        house = new House();
-        house.setTitle("Luxury Apartment iasldkfjaskldfjas faklafsj ");
-        house.setCategory(4);
-        house.setPrice(12345);
-        house.setImage(new File("src/img/4.jpg"));
-        list.add(house);
+    @FXML
+    void loginHandler(ActionEvent event) {
 
-        house = new House();
-        house.setTitle("Warehouse iasldkfjaskldfjas faklafsj ");
-        house.setCategory(4);
-        house.setPrice(12345);
-        house.setImage(new File("src/img/5.jpg"));
-        list.add(house);
+        try {
 
-        return list;
+            Stage primaryStage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("../views/login.fxml"));
+            primaryStage.setTitle("Login");
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
 
+            Stage stage = (Stage)btnLogin.getScene().getWindow();
+            stage.close();
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 }

@@ -25,6 +25,12 @@
     -fx-text-fill: white;
 }
 
+.blue-button{
+    -fx-background-color: #219ebc;
+    -fx-background-radius: 20;
+    -fx-text-fill: white;
+}
+
 .white-button{
     -fx-background-color: white;
     -fx-background-radius: 20;
@@ -47,10 +53,16 @@
 }
 
 .title-pane{
+    -fx-border-color: #fb8500;
+    -fx-border-radius: 50;
+    -fx-text-fill: #fb8500;
+}
+
+.orange-button{
+
     -fx-background-color: #fb8500;
     -fx-background-radius: 50;
 }
-
 .agent-pane{
 
     -fx-background-color: #ffb703;
@@ -62,10 +74,10 @@
 }
 
 .tab-pane {
-    -fx-tab-min-width:112px;
-    -fx-tab-max-width:112px;
-    -fx-tab-min-height:30px;
-    -fx-tab-max-height:30px;
+    -fx-tab-min-width:300px;
+    -fx-tab-max-width:300px;
+    -fx-tab-min-height:50px;
+    -fx-tab-max-height:50px;
 }
 
 

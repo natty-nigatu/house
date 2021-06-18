@@ -4,16 +4,43 @@ import javafx.scene.image.Image;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.Serializable;
 import java.nio.file.Files;
 
-public class House {
+public class House implements Serializable {
+    int id;
     byte[] imagebytes;
     String title;
     String features;
     int price;
     int category;
+    String imageid;
 
     Agent agent;
+
+    public House(){
+
+    }
+
+    public House(int id){
+        this.id = id;
+    }
+
+    public String getImageid() {
+        return imageid;
+    }
+
+    public void setImageid(String imageid) {
+        this.imageid = imageid;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Image getImage() {
 
@@ -69,5 +96,9 @@ public class House {
 
     public void setAgent(Agent agent) {
         this.agent = agent;
+    }
+
+    public byte[] getImagebytes() {
+        return imagebytes;
     }
 }

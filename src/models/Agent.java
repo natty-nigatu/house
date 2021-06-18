@@ -1,11 +1,30 @@
 package models;
 
-public class Agent {
+import java.io.Serializable;
+
+public class Agent implements Serializable {
+    int id;
     String name;
     int phone;
     String email;
     String username;
     String password;
+
+    public Agent(){
+
+    }
+
+    public Agent(int id){
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;

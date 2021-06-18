@@ -16,16 +16,19 @@ public class Category {
                 return "All";
 
             case 1:
-                return "Office";
+                return "House";
 
             case 2:
-                return "House";
+                return "Office";
 
             case 3:
                 return "Apartment";
 
             case 4:
                 return "Warehouse";
+
+            case 5:
+                return "Condo";
         }
 
         return "";

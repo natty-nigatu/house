@@ -1,5 +1,6 @@
 package controllers;
 
+import data.Category;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -38,7 +39,7 @@ public class ListingController {
         this.house = house;
 
         lblTitle.setText(house.getTitle());
-        lblCategory.setText(Integer.toString(house.getCategory()));
+        lblCategory.setText(Category.get(house.getCategory()));
         lblPrice.setText(Integer.toString(house.getPrice()));
 
         try {

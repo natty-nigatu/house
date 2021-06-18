@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -74,30 +73,26 @@
                         <Insets bottom="25.0" left="20.0" right="20.0" top="25.0" />
                      </VBox.margin>
                      <children>
-                        <Label fx:id="lblTitle" text="3 Bedroom apartment" textFill="WHITE">
+                        <Label fx:id="lblTitle" style="-fx-text-fill: #fb8500;" text="3 Bedroom apartment" textFill="#fb8500">
                            <font>
-                              <Font name="Candara Light" size="30.0" />
+                              <Font name="Candara" size="30.0" />
                            </font>
                         </Label>
                      </children>
                   </StackPane>
                   <ScrollPane fitToWidth="true" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <content>
-                        <VBox maxWidth="1.7976931348623157E308" prefHeight="1137.0" prefWidth="916.0">
+                        <VBox maxWidth="1.7976931348623157E308" prefWidth="916.0">
                            <children>
                               <StackPane prefHeight="320.0" prefWidth="638.0">
                                  <VBox.margin>
                                     <Insets bottom="25.0" left="25.0" right="20.0" />
                                  </VBox.margin>
                                  <children>
-                                    <ImageView fx:id="imageView" fitHeight="320.0" fitWidth="630.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="file:/C:/Users/Natty/IdeaProjects/House%20Interface/src/img/1.jpg" />
-                                       </image>
-                                    </ImageView>
+                                    <ImageView fx:id="imageView" fitHeight="320.0" fitWidth="630.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </StackPane>
-                              <StackPane maxWidth="1.7976931348623157E308" prefWidth="657.0" VBox.vgrow="ALWAYS">
+                              <StackPane maxWidth="1.7976931348623157E308" prefWidth="657.0" VBox.vgrow="SOMETIMES">
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="55.0" right="50.0" />
                                  </VBox.margin>
@@ -106,7 +101,7 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <VBox maxWidth="1.7976931348623157E308" prefWidth="657.0" StackPane.alignment="CENTER">
+                                    <VBox StackPane.alignment="CENTER">
                                        <children>
                                           <HBox>
                                              <VBox.margin>
@@ -146,12 +141,12 @@
                                                 <Insets left="35.0" />
                                              </VBox.margin>
                                           </Label>
-                                          <Label fx:id="lblFeatures" maxWidth="1.7976931348623157E308" prefWidth="466.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus laoreet arcu ac est vulputate, rhoncus fermentum tellus scelerisque. Sed sagittis tellus dapibus nibh bibendum, non egestas arcu tincidunt. Maecenas pulvinar quam nisi, et feugiat nunc mattis et. Praesent a dignissim ante. Curabitur nec condimentum ante. In hac habitasse platea dictumst. In quis iaculis lacus. Vivamus pretium nulla sit amet iaculis fringilla. Sed fringilla tellus non posuere commodo. Pellentesque nec nunc vitae turpis gravida condimentum nec quis neque. Cras tempus ipsum vitae gravida porttitor.Vestibulum ac sem sit amet ligula accumsan aliquet iaculis sit amet mauris. Praesent quis tortor lorem. Curabitur viverra, dolor sit amet vehicula laoreet, dui mauris congue odio, quis molestie elit velit ac metus. Donec eget augue tempor, tempor lorem eu, condimentum justo. Sed eu ultrices ex, eu ornare est. Pellentesque commodo nulla dui, id aliquam nibh congue vitae. Morbi dictum ante id purus auctor, at sodales lectus faucibus. Vivamus fringilla dapibus ullamcorper. Integer viverra tempor turpis, et egestas est congue vel. Quisque ac diam sem. Donec sit amet accumsan velit." wrapText="true">
+                                          <Label fx:id="lblFeatures" maxWidth="1.7976931348623157E308" prefWidth="466.0" text="ldfkjgd asdjkfh asdlkjf aklsdjf laksdjf laskdjf laskdjf laskdjf lask;djf la;ksdjf la;ksdjf laskdjf alskdfj laksdjf laskdjf alsdkfj alskdfj alskdfj als;dkfj asldk;fj as;dlkfj " wrapText="true">
                                              <font>
                                                 <Font name="Candara" size="18.0" />
                                              </font>
                                              <VBox.margin>
-                                                <Insets bottom="20.0" left="35.0" right="35.0" />
+                                                <Insets bottom="30.0" left="35.0" right="35.0" />
                                              </VBox.margin>
                                           </Label>
                                        </children>
@@ -235,7 +230,7 @@
                                                       <Font name="Candara" size="20.0" />
                                                    </font>
                                                    <HBox.margin>
-                                                      <Insets />
+                                                      <Insets bottom="5.0" />
                                                    </HBox.margin>
                                                 </Label>
                                              </children>
@@ -269,7 +264,7 @@
                      </font>
                   </Label>
                   <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="89.0" styleClass="white-button" text="Log In">
+                  <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#loginHandler" prefHeight="38.0" prefWidth="89.0" styleClass="white-button" text="Log In">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="30.0" top="10.0" />
                      </HBox.margin>

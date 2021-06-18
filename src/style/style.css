@@ -53,10 +53,16 @@
 }
 
 .title-pane{
+    -fx-border-color: #fb8500;
+    -fx-border-radius: 50;
+    -fx-text-fill: #fb8500;
+}
+
+.orange-button{
+
     -fx-background-color: #fb8500;
     -fx-background-radius: 50;
 }
-
 .agent-pane{
 
     -fx-background-color: #ffb703;
