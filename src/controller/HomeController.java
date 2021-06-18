@@ -1,10 +1,13 @@
 package controller;
 
+import data.Category;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.image.Image;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -19,14 +22,60 @@ import java.util.ResourceBundle;
 public class HomeController implements Initializable {
 
     @FXML
+    private ComboBox<String> comboCategory;
+
+    @FXML
     private VBox listingList;
+
+    @FXML
+    private Label lblTitle;
+
+    @FXML
+    private ImageView imageView;
+
+    @FXML
+    private Label lblCategory;
+
+    @FXML
+    private Label lblPrice;
+
+    @FXML
+    private Label lblFeatures;
+
+    @FXML
+    private Label lblAgentName;
+
+    @FXML
+    private Label lblAgentPhone;
+
+    @FXML
+    private Label lblAgentEmail;
+
+    ListingListener listingListener;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        List<House> list = getData();
+        comboCategory.setItems(Category.getAll());
+        reload(1);
 
-        for(int i = 0; i < list.size(); i++){
+    }
+
+    private void reload(int category){
+        List<House> houseList = getData(category);
+
+        if (houseList.size() > 1 ) {
+            setChosenListing(houseList.get(1));
+
+            listingListener = new ListingListener() {
+                @Override
+                public void onClickListener(House house) {
+                    setChosenListing(house);
+                }
+            };
+        }
+
+        for (House house : houseList) {
 
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -39,23 +88,29 @@ public class HomeController implements Initializable {
                 VBox.setMargin(stack, new Insets(0, 30, 0, 40));
 
                 ListingController listingController = fxmlLoader.getController();
-                listingController.setData(list.get(i));
+                listingController.setData(house, listingListener);
 
                 listingList.getChildren().add(stack);
-            }
-            catch (Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
 
         }
     }
+    private void setChosenListing(House house){
 
-    private List<House> getData(){
+        lblTitle.setText(house.getTitle());
+        imageView.setImage(house.getImage());
+        lblCategory.setText(Category.get(house.getCategory()));
+        lblPrice.setText(Integer.toString(house.getPrice()));
+    }
+
+    private List<House> getData(int category){
 
         List<House> list = new ArrayList<>();
 
         House house = new House();
-        house.setTitle("Luxury Apartment iasldkfjaskldfjas faklafsj ");
+        house.setTitle("House 1 Apartment iasldkfjaskldfjas faklafsj ");
         house.setCategory(1);
         house.setPrice(12345);
         house.setImage(new File("src/img/1.jpg"));
@@ -69,7 +124,7 @@ public class HomeController implements Initializable {
         list.add(house);
 
         house = new House();
-        house.setTitle("Luxury Apartment iasldkfjaskldfjas faklafsj ");
+        house.setTitle("Home iasldkfjaskldfjas faklafsj ");
         house.setCategory(3);
         house.setPrice(12345);
         house.setImage(new File("src/img/3.jpg"));
@@ -83,8 +138,8 @@ public class HomeController implements Initializable {
         list.add(house);
 
         house = new House();
-        house.setTitle("Luxury Apartment iasldkfjaskldfjas faklafsj ");
-        house.setCategory(5);
+        house.setTitle("Warehouse iasldkfjaskldfjas faklafsj ");
+        house.setCategory(4);
         house.setPrice(12345);
         house.setImage(new File("src/img/5.jpg"));
         list.add(house);

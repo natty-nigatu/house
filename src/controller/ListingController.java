@@ -7,13 +7,11 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import model.House;
-
-import java.io.File;
-import java.io.FileInputStream;
 
 public class ListingController {
 
@@ -29,7 +27,19 @@ public class ListingController {
     @FXML
     private Label lblPrice;
 
-    public void setData(House house){
+    ListingListener listingListener;
+    House house;
+
+    @FXML
+    public void onClickHandler(MouseEvent event) {
+        listingListener.onClickListener(house);
+    }
+
+    public void setData(House house, ListingListener listingListener){
+
+        this.listingListener = listingListener;
+        this.house = house;
+
         lblTitle.setText(house.getTitle());
         lblCategory.setText(Integer.toString(house.getCategory()));
         lblPrice.setText(Integer.toString(house.getPrice()));
