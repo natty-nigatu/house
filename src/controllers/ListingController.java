@@ -1,17 +1,14 @@
-package controller;
+package controllers;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Region;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import model.House;
+import models.House;
 
 public class ListingController {
 

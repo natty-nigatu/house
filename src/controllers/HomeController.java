@@ -1,4 +1,4 @@
-package controller;
+package controllers;
 
 import data.Category;
 import javafx.fxml.FXML;
@@ -11,7 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import model.House;
+import models.House;
 
 import java.io.File;
 import java.net.URL;
