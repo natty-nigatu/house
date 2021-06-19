@@ -126,12 +126,12 @@ public class ServerAction extends UnicastRemoteObject implements Server {
     }
 
     @Override
-    public List<House> getListings(int category) throws RemoteException {
+    public List<House> getListings(int category, int location) throws RemoteException {
         List<House> list = new ArrayList<>();
         List<Integer> idList;
 
 
-        idList = db.getListings(category);
+        idList = db.getListings(category, location);
 
         for (int id : idList){
             list.add(loadHouse(id));

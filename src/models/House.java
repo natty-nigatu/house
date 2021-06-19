@@ -14,6 +14,7 @@ public class House implements Serializable {
     String features;
     int price;
     int category;
+    int location;
     String imageid;
 
     Agent agent;
@@ -24,6 +25,14 @@ public class House implements Serializable {
 
     public House(int id){
         this.id = id;
+    }
+
+    public int getLocation() {
+        return location;
+    }
+
+    public void setLocation(int location) {
+        this.location = location;
     }
 
     public String getImageid() {
