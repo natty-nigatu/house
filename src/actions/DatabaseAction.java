@@ -71,15 +71,24 @@ public class DatabaseAction extends UnicastRemoteObject implements Database {
     }
 
     @Override
-    public List<Integer> getListings(int category) throws RemoteException {
+    public List<Integer> getListings(int category, int location) throws RemoteException {
 
         Message.client("Get Listing IDs Request.");
 
         List<Integer> list = new ArrayList<>();
         String query = "SELECT id FROM house";
 
-        if (category != 0)
+        if (category != 0) {
             query += " WHERE category = " + category;
+
+            if(location != 0){
+                query += " AND location = " + location;
+            }
+
+        } else if (location != 0){
+
+            query += " WHERE location = " +location;
+        }
 
         try {
             Statement stmt = connection.createStatement();
@@ -170,6 +179,7 @@ public class DatabaseAction extends UnicastRemoteObject implements Database {
                 house.setTitle(resultSet.getString("title"));
                 house.setPrice(resultSet.getInt("price"));
                 house.setCategory(resultSet.getInt("category"));
+                house.setLocation(resultSet.getInt("location"));
                 house.setFeatures(resultSet.getString("features"));
                 house.setImageid(resultSet.getString("image"));
 
@@ -248,7 +258,7 @@ public class DatabaseAction extends UnicastRemoteObject implements Database {
     @Override
     public int saveHouse(House house) throws RemoteException {
 
-        String query = "UPDATE house SET title = ?, price = ?, category = ?, features = ?, agent = ?, image = ? WHERE id = ?";
+        String query = "UPDATE house SET title = ?, price = ?, category = ?, features = ?, agent = ?, image = ?, location = ? WHERE id = ?";
 
         try {
 
@@ -259,7 +269,8 @@ public class DatabaseAction extends UnicastRemoteObject implements Database {
             stmt.setString(4, house.getFeatures());
             stmt.setInt(5, house.getAgent().getId());
             stmt.setString(6, house.getImageid());
-            stmt.setInt(7, house.getId());
+            stmt.setInt(7, house.getLocation());
+            stmt.setInt(8, house.getId());
 
             return stmt.executeUpdate();
 
@@ -274,7 +285,7 @@ public class DatabaseAction extends UnicastRemoteObject implements Database {
     @Override
     public int addHouse(House house) throws RemoteException {
 
-        String query = "INSERT INTO house (title, price, category, features, agent, image) Values (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO house (title, price, category, features, agent, image, location) Values (?, ?, ?, ?, ?, ?, ?)";
 
         try {
 
@@ -286,6 +297,7 @@ public class DatabaseAction extends UnicastRemoteObject implements Database {
             stmt.setString(4, house.getFeatures());
             stmt.setInt(5, house.getAgent().getId());
             stmt.setString(6, house.getImageid());
+            stmt.setInt(7, house.getLocation());
 
             return stmt.executeUpdate();
 

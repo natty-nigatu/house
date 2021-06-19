@@ -10,7 +10,7 @@ import java.util.List;
 public interface Database extends Remote {
 
     String getNextImage() throws RemoteException;
-    List<Integer> getListings(int category) throws RemoteException;
+    List<Integer> getListings(int category, int location) throws RemoteException;
     List<Integer> getListingsbyAgent(int agentId) throws RemoteException;
     int login(String username, String password) throws RemoteException;
     House getListingDetail(int id) throws RemoteException;

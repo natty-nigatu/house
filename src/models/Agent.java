@@ -9,9 +9,18 @@ public class Agent implements Serializable {
     String email;
     String username;
     String password;
+    int type;
 
     public Agent(){
 
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public Agent(int id){
