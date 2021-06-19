@@ -1,6 +1,7 @@
 package controllers;
 
 import data.Category;
+import data.Location;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -58,6 +59,9 @@ public class LoggedInController implements Initializable {
 
     @FXML
     private ComboBox<String> comboCategory;
+
+    @FXML
+    private ComboBox<String> comboLocation;
 
     @FXML
     private TextField txtPrice;
@@ -169,6 +173,7 @@ public class LoggedInController implements Initializable {
         txtTitle.clear();
         imageView.setImage(null);
         comboCategory.getSelectionModel().select(1);
+        comboLocation.getSelectionModel().select(1);
         txtPrice.clear();
         txtFeatures.clear();
     }
@@ -181,9 +186,13 @@ public class LoggedInController implements Initializable {
     @FXML
     void saveChangesHandler(ActionEvent event) {
 
+        if (!check())
+            return;
+
         chosenHouse.setTitle(txtTitle.getText());
         chosenHouse.setPrice(Integer.parseInt(txtPrice.getText()));
         chosenHouse.setCategory(comboCategory.getSelectionModel().getSelectedIndex());
+        chosenHouse.setLocation(comboLocation.getSelectionModel().getSelectedIndex());
         chosenHouse.setFeatures(txtFeatures.getText());
 
 
@@ -283,6 +292,49 @@ public class LoggedInController implements Initializable {
         else return "";
     }
 
+    private boolean check(){
+
+
+        if(txtTitle.getText().isBlank()){
+            btnSaveChanges.setText("Please Set Title");
+            setSaveText();
+            return false;
+        }
+
+        if(txtPrice.getText().isBlank()){
+            btnSaveChanges.setText("Please Set Price");
+            setSaveText();
+            return false;
+        }
+
+        if(imageView.getImage() == null){
+            btnSaveChanges.setText("Please Upload an Image");
+            setSaveText();
+            return false;
+        }
+
+        return true;
+    }
+
+    private void setSaveText(){
+
+        new Timer().schedule(
+                new TimerTask() {
+                    @Override
+                    public void run() {
+
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                btnSaveChanges.setText("Save Changes");
+                            }
+                        });
+                    }
+                }, 1000);
+    }
+
+
     public Agent getAgent() {
         return agent;
     }
@@ -296,6 +348,16 @@ public class LoggedInController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboCategory.setItems(Category.getAll());
+        comboLocation.setItems(Location.getAll());
+    }
+
+    private void clearView(){
+        txtTitle.setText("");
+        imageView.setImage(null);
+        comboCategory.getSelectionModel().select(1);
+        comboLocation.getSelectionModel().select((1));
+        txtPrice.setText("");
+        txtFeatures.setText("");
     }
 
     private void reload(){
@@ -304,8 +366,12 @@ public class LoggedInController implements Initializable {
 
         List<House> houseList = getData();
 
-        if (houseList.size() > 1 ) {
-            setChosenListing(houseList.get(1));
+        if (houseList.size() > 0 ) {
+
+            if (newHouse)
+                setChosenListing(houseList.get(houseList.size() - 1));
+            else
+                setChosenListing(houseList.get(0));
 
             listingListener = new ListingListener() {
                 @Override
@@ -313,6 +379,8 @@ public class LoggedInController implements Initializable {
                     setChosenListing(house);
                 }
             };
+        } else {
+            clearView();
         }
 
         for (House house : houseList) {
@@ -350,6 +418,7 @@ public class LoggedInController implements Initializable {
         txtTitle.setText(chosenHouse.getTitle());
         imageView.setImage(chosenHouse.getImage());
         comboCategory.getSelectionModel().select(chosenHouse.getCategory());
+        comboLocation.getSelectionModel().select(chosenHouse.getLocation());
         txtPrice.setText(Integer.toString(chosenHouse.getPrice()));
         txtFeatures.setText(chosenHouse.getFeatures());
     }

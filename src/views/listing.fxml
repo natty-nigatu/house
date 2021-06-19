@@ -19,12 +19,20 @@
       </StackPane>
       <VBox layoutX="205.0" prefHeight="140.0" prefWidth="140.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
          <children>
-            <Label fx:id="lblTitle" alignment="TOP_LEFT" prefHeight="54.0" prefWidth="230.0" text="Title title title title titleTitle e title title title" textFill="#023047" wrapText="true">
+            <Label fx:id="lblTitle" alignment="TOP_LEFT" prefHeight="48.0" prefWidth="230.0" text="Title title title title titleTitle e title title title" textFill="#023047" wrapText="true">
                <font>
                   <Font name="Corbel" size="18.0" />
                </font>
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="lblLocation" prefHeight="2.0" prefWidth="195.0" text="Location" textFill="#023047">
+               <font>
+                  <Font name="Corbel" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
                </VBox.margin>
             </Label>
             <Label fx:id="lblCategory" prefHeight="2.0" prefWidth="195.0" text="Category" textFill="#023047">

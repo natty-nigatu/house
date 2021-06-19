@@ -1,6 +1,7 @@
 package controllers;
 
 import data.Category;
+import data.Location;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,6 +35,9 @@ public class HomeController implements Initializable {
     private ComboBox<String> comboCategory;
 
     @FXML
+    private ComboBox<String> comboLocation;
+
+    @FXML
     private VBox listingList;
 
     @FXML
@@ -44,6 +48,9 @@ public class HomeController implements Initializable {
 
     @FXML
     private Label lblCategory;
+
+    @FXML
+    private Label lblLocation;
 
     @FXML
     private Label lblPrice;
@@ -66,12 +73,46 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         comboCategory.setItems(Category.getAll());
-        reload(0);
+        comboCategory.getSelectionModel().select(0);
+
+        comboLocation.setItems(Location.getAll());
+        comboLocation.getSelectionModel().select(0);
+
+        reload();
 
     }
 
-    private void reload(int category){
-        List<House> houseList = getData(category);
+    @FXML
+    void locationHandler(ActionEvent event) {
+        reload();
+    }
+
+
+    @FXML
+    void typeHandler(ActionEvent event) {
+        reload();
+    }
+
+    private void clearView(){
+        lblTitle.setText("");
+        imageView.setImage(null);
+        lblCategory.setText("");
+        lblLocation.setText("");
+        lblPrice.setText("");
+        lblFeatures.setText("");
+        lblAgentPhone.setText("");
+        lblAgentEmail.setText("");
+        lblAgentName.setText("");
+    }
+
+    private void reload(){
+
+        int category = comboCategory.getSelectionModel().getSelectedIndex();
+        int location = comboLocation.getSelectionModel().getSelectedIndex();
+
+        listingList.getChildren().clear();
+
+        List<House> houseList = getData(category, location);
 
         if (houseList.size() > 0 ) {
             setChosenListing(houseList.get(0));
@@ -82,6 +123,9 @@ public class HomeController implements Initializable {
                     setChosenListing(house);
                 }
             };
+        } else
+        {
+            clearView();
         }
 
         for (House house : houseList) {
@@ -111,6 +155,7 @@ public class HomeController implements Initializable {
         lblTitle.setText(house.getTitle());
         imageView.setImage(house.getImage());
         lblCategory.setText(Category.get(house.getCategory()));
+        lblLocation.setText(Location.get(house.getLocation()));
         lblPrice.setText(Integer.toString(house.getPrice()));
         lblFeatures.setText(house.getFeatures());
         lblAgentName.setText(house.getAgent().getName());
@@ -118,13 +163,16 @@ public class HomeController implements Initializable {
         lblAgentPhone.setText(Integer.toString(house.getAgent().getPhone()));
     }
 
-    private List<House> getData(int category){
+    private List<House> getData(int category, int location){
 
         if (category < 0)
             category = 0;
 
+        if (location < 0)
+            location = 0;
+
         try{
-            return Main.server.getListings(category);
+            return Main.server.getListings(category, location);
 
         } catch (Exception ex){
             ex.printStackTrace();

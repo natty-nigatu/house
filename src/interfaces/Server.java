@@ -17,7 +17,7 @@ public interface Server extends Remote {
     boolean addHouse(House house) throws  RemoteException;
     boolean deleteHouse(House house) throws RemoteException;
 
-    List<House> getListings(int category) throws RemoteException;
+    List<House> getListings(int category, int location) throws RemoteException;
     List<House> getListingsbyAgent(int agentId) throws RemoteException;
 
     int login(String username, String password) throws RemoteException;

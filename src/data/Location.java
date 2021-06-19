@@ -3,13 +3,9 @@ package data;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.awt.image.AreaAveragingScaleFilter;
-import java.util.ArrayList;
-import java.util.List;
+public class Location {
 
-public class Category {
-
-    private static String [] list = {"All", "House", "Office", "Apartment", "Warehouse", "Condo", ""};
+    private static String [] list = {"All", "Addis Ababa", "Adama", "Mekele", "Bahir Dar", "Hawassa", ""};
 
     public static String get(int i){
 
