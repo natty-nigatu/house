@@ -14,17 +14,20 @@ public class Main {
     public static void main(String[] args) {
 
         try {
+            Message.server("Connecting to Database Server . . .");
             Registry registry = LocateRegistry.getRegistry(host, 8000);
             Database db = (Database)registry.lookup("database");
 
+            Message.server("Successfully Connected to Database Server.");
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+            Message.server("Starting this Server . . .");
             ServerAction server = new ServerAction(db);
 
             Registry registry2 = LocateRegistry.createRegistry(8080);
             registry2.rebind("server", server);
 
-            Message.server("Database Server is Up and Running.");
+            Message.server("Server is Up and Running.");
 
         } catch (Exception ex){
             ex.printStackTrace();
