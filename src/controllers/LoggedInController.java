@@ -3,6 +3,8 @@ package controllers;
 import data.Category;
 import data.Location;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -149,7 +151,7 @@ public class LoggedInController implements Initializable {
 
             Stage primaryStage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("../views/home.fxml"));
-            primaryStage.setTitle("Login");
+            primaryStage.setTitle("Rent a House");
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.setMaximized(true);
@@ -349,6 +351,28 @@ public class LoggedInController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboCategory.setItems(Category.getAll());
         comboLocation.setItems(Location.getAll());
+
+        try {
+            txtPhone.textProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                    if (!t1.matches("\\d*") || t1.length() > 9)
+                        txtPhone.setText(s);
+                }
+            });
+        }
+        catch (Exception ex){}
+
+        try {
+            txtPrice.textProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                    if (!t1.matches("\\d*") || t1.length() > 9)
+                        txtPrice.setText(s);
+                }
+            });
+        }
+        catch (Exception ex){}
     }
 
     private void clearView(){
@@ -448,5 +472,5 @@ public class LoggedInController implements Initializable {
         }catch (Exception ex){
             ex.printStackTrace();
         }
-        }
+    }
 }

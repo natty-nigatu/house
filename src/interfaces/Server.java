@@ -1,5 +1,6 @@
 package interfaces;
 
+import javafx.collections.ObservableList;
 import models.Agent;
 import models.House;
 
@@ -11,6 +12,9 @@ public interface Server extends Remote {
 
     Agent loadAgent(int id) throws RemoteException;
     boolean saveAgent(Agent agent) throws RemoteException;
+    boolean addAgent(Agent agent) throws RemoteException;
+    boolean testUsername(String username) throws RemoteException;
+    List<Agent> getAgents() throws RemoteException;
 
     House loadHouse(int id) throws RemoteException;
     boolean saveHouse(House house) throws RemoteException;

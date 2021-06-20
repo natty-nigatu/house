@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/10" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminController">
+   <children>
+      <TabPane stylesheets="@../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <tabs>
+            <Tab closable="false" text="Listings">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <left>
+                        <VBox prefHeight="662.0" prefWidth="466.0" styleClass="left-pane" stylesheets="@../style/style.css" BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="54.0" prefWidth="362.0">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" left="30.0" right="30.0" top="15.0" />
+                                 </VBox.margin>
+                                 <styleClass>
+                                    <String fx:value="left-top-pane" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="38.0" prefWidth="120.0" text="Location" textAlignment="RIGHT">
+                                       <font>
+                                          <Font name="Candara Light" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="comboLocation" onAction="#locationHandler" prefHeight="27.0" prefWidth="240.0" styleClass="category-combo" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="20.0" layoutY="79.0" prefHeight="54.0" prefWidth="362.0">
+                                 <VBox.margin>
+                                    <Insets bottom="25.0" left="30.0" right="30.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="38.0" prefWidth="120.0" text="Type" textAlignment="RIGHT">
+                                       <font>
+                                          <Font name="Candara Light" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="comboCategory" onAction="#typeHandler" prefHeight="27.0" prefWidth="240.0" styleClass="category-combo" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="left-top-pane" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                              </HBox>
+                              <ScrollPane maxHeight="1.7976931348623157E308" prefHeight="386.0" prefWidth="466.0" VBox.vgrow="ALWAYS">
+                                 <content>
+                                    <VBox fx:id="listingList" spacing="20.0" />
+                                 </content>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </ScrollPane>
+                           </children>
+                        </VBox>
+                     </left>
+                     <center>
+                        <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@../style/style.css" BorderPane.alignment="CENTER">
+                           <children>
+                              <StackPane prefHeight="86.0" prefWidth="658.0" styleClass="title-pane">
+                                 <VBox.margin>
+                                    <Insets bottom="25.0" left="20.0" right="20.0" top="25.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <Label fx:id="lblTitle" style="-fx-text-fill: #fb8500;" text="3 Bedroom apartment" textFill="#fb8500">
+                                       <font>
+                                          <Font name="Candara" size="30.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </StackPane>
+                              <ScrollPane fitToWidth="true" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                 <content>
+                                    <VBox maxWidth="1.7976931348623157E308" prefWidth="916.0">
+                                       <children>
+                                          <StackPane prefHeight="320.0" prefWidth="638.0">
+                                             <VBox.margin>
+                                                <Insets bottom="25.0" left="25.0" right="20.0" />
+                                             </VBox.margin>
+                                             <children>
+                                                <ImageView fx:id="imageView" fitHeight="320.0" fitWidth="630.0" pickOnBounds="true" preserveRatio="true" />
+                                             </children>
+                                          </StackPane>
+                                          <Button fx:id="btnDeleteListing" mnemonicParsing="false" onAction="#deleteListingHandler" prefHeight="38.0" prefWidth="1193.0" styleClass="orange-button" text="Delete Listing">
+                                             <font>
+                                                <Font name="Candara" size="14.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets bottom="25.0" left="55.0" right="50.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <StackPane layoutX="35.0" layoutY="20.0" prefWidth="657.0">
+                                             <styleClass>
+                                                <String fx:value="agent-pane" />
+                                                <String fx:value="shadow" />
+                                             </styleClass>
+                                             <children>
+                                                <VBox prefWidth="657.0">
+                                                   <children>
+                                                      <Label prefHeight="65.0" prefWidth="442.0" text="Listing Agent">
+                                                         <font>
+                                                            <Font name="Candara Light" size="36.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets left="35.0" top="10.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label prefHeight="30.0" prefWidth="95.0" text="Name:">
+                                                               <font>
+                                                                  <Font name="Candara Light" size="24.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                            <Label fx:id="lblAgentName" prefHeight="30.0" prefWidth="380.0" text="Agent Name">
+                                                               <font>
+                                                                  <Font name="Candara" size="20.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" left="30.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label prefHeight="30.0" prefWidth="95.0" text="Phone">
+                                                               <font>
+                                                                  <Font name="Candara Light" size="24.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                            <Label fx:id="lblAgentPhone" prefHeight="30.0" prefWidth="380.0" text="Agent Phone">
+                                                               <font>
+                                                                  <Font name="Candara" size="20.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" left="30.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label prefHeight="30.0" prefWidth="95.0" text="Email">
+                                                               <font>
+                                                                  <Font name="Candara Light" size="24.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                            <Label fx:id="lblAgentEmail" prefHeight="30.0" prefWidth="380.0" text="Agent@email.com">
+                                                               <font>
+                                                                  <Font name="Candara" size="20.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="20.0" left="30.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" left="55.0" right="50.0" />
+                                             </VBox.margin>
+                                          </StackPane>
+                                          <StackPane maxWidth="1.7976931348623157E308" prefWidth="657.0" VBox.vgrow="SOMETIMES">
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" left="55.0" right="50.0" top="10.0" />
+                                             </VBox.margin>
+                                             <styleClass>
+                                                <String fx:value="left-top-pane" />
+                                                <String fx:value="shadow" />
+                                             </styleClass>
+                                             <children>
+                                                <VBox StackPane.alignment="CENTER">
+                                                   <children>
+                                                      <HBox>
+                                                         <VBox.margin>
+                                                            <Insets left="35.0" top="15.0" />
+                                                         </VBox.margin>
+                                                         <children>
+                                                            <Label prefHeight="30.0" prefWidth="115.0" text="Type: ">
+                                                               <font>
+                                                                  <Font name="Candara Light" size="24.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                            <Label fx:id="lblCategory" prefHeight="30.0" prefWidth="458.0" text="Apartment">
+                                                               <font>
+                                                                  <Font name="Candara Light" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label alignment="TOP_LEFT" prefHeight="38.0" prefWidth="14.0" text="\$" textAlignment="RIGHT">
+                                                               <font>
+                                                                  <Font name="Candara Light" size="30.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label fx:id="lblPrice" alignment="TOP_RIGHT" text="2500" textAlignment="RIGHT">
+                                                               <font>
+                                                                  <Font name="Candara" size="30.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label prefHeight="30.0" prefWidth="115.0" text="Location:">
+                                                               <font>
+                                                                  <Font name="Candara Light" size="24.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                            <Label fx:id="lblLocation" prefHeight="30.0" prefWidth="458.0" text="Addis">
+                                                               <font>
+                                                                  <Font name="Candara Light" size="24.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets left="35.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <Label prefHeight="65.0" prefWidth="442.0" text="Features">
+                                                         <font>
+                                                            <Font name="Candara Light" size="36.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets left="35.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <Label fx:id="lblFeatures" maxWidth="1.7976931348623157E308" prefWidth="466.0" text="ldfkjgd asdjkfh asdlkjf aklsdjf laksdjf laskdjf laskdjf laskdjf lask;djf la;ksdjf la;ksdjf laskdjf alskdfj laksdjf laskdjf alsdkfj alskdfj alskdfj als;dkfj asldk;fj as;dlkfj " wrapText="true">
+                                                         <font>
+                                                            <Font name="Candara" size="18.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="30.0" left="35.0" right="35.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </VBox>
+                     </center>
+                  </BorderPane>
+               </content>
+            </Tab>
+            <Tab closable="false" text="Agent">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <center>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="Add a new Agent">
+                                       <font>
+                                          <Font name="Candara Light" size="24.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <GridPane maxWidth="510.0" minWidth="510.0" prefHeight="450.0" prefWidth="510.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.79998779296875" minWidth="10.0" prefWidth="110.39998779296874" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="610.2000122070312" minWidth="10.0" prefWidth="424.0000122070312" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="68.80000000000001" minHeight="10.0" prefHeight="68.80000000000001" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="68.80000000000001" minHeight="10.0" prefHeight="68.80000000000001" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="46.0" prefWidth="467.0" GridPane.columnIndex="1">
+                                             <children>
+                                                <TextField fx:id="txtName1" prefHeight="27.0" prefWidth="365.0" styleClass="transparent">
+                                                   <font>
+                                                      <Font name="Candara" size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                             </children>
+                                             <styleClass>
+                                                <String fx:value="left-top-pane" />
+                                                <String fx:value="shadow" />
+                                             </styleClass>
+                                             <GridPane.margin>
+                                                <Insets bottom="10.0" top="10.0" />
+                                             </GridPane.margin>
+                                          </HBox>
+                                          <Label text="Name" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="Candara Light" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Phone" textAlignment="CENTER" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font name="Candara Light" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Email" textAlignment="CENTER" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font name="Candara Light" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Username" textAlignment="CENTER" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font name="Candara Light" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Password" textAlignment="CENTER" GridPane.rowIndex="4">
+                                             <font>
+                                                <Font name="Candara Light" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox alignment="CENTER" prefHeight="46.0" prefWidth="467.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <children>
+                                                <TextField fx:id="txtPhone1" prefHeight="27.0" prefWidth="365.0" styleClass="transparent">
+                                                   <font>
+                                                      <Font name="Candara" size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                             </children>
+                                             <styleClass>
+                                                <String fx:value="left-top-pane" />
+                                                <String fx:value="shadow" />
+                                             </styleClass>
+                                             <GridPane.margin>
+                                                <Insets bottom="10.0" top="10.0" />
+                                             </GridPane.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="46.0" prefWidth="467.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <children>
+                                                <TextField fx:id="txtEmail1" prefHeight="27.0" prefWidth="365.0" styleClass="transparent">
+                                                   <font>
+                                                      <Font name="Candara" size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                             </children>
+                                             <styleClass>
+                                                <String fx:value="left-top-pane" />
+                                                <String fx:value="shadow" />
+                                             </styleClass>
+                                             <GridPane.margin>
+                                                <Insets bottom="10.0" top="10.0" />
+                                             </GridPane.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="46.0" prefWidth="467.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <children>
+                                                <TextField fx:id="txtUsername1" prefHeight="27.0" prefWidth="365.0" styleClass="transparent">
+                                                   <font>
+                                                      <Font name="Candara" size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                             </children>
+                                             <styleClass>
+                                                <String fx:value="left-top-pane" />
+                                                <String fx:value="shadow" />
+                                             </styleClass>
+                                             <GridPane.margin>
+                                                <Insets bottom="10.0" top="10.0" />
+                                             </GridPane.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="46.0" prefWidth="467.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                             <styleClass>
+                                                <String fx:value="left-top-pane" />
+                                                <String fx:value="shadow" />
+                                             </styleClass>
+                                             <GridPane.margin>
+                                                <Insets bottom="10.0" top="10.0" />
+                                             </GridPane.margin>
+                                             <children>
+                                                <PasswordField fx:id="txtPassword1" prefHeight="26.0" prefWidth="365.0" styleClass="transparent">
+                                                   <font>
+                                                      <Font name="Candara" size="14.0" />
+                                                   </font>
+                                                </PasswordField>
+                                             </children>
+                                          </HBox>
+                                          <Button fx:id="btnAddAgent" mnemonicParsing="false" onAction="#addAgentHandler" prefHeight="36.0" prefWidth="472.0" text="Add Agent" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                             <GridPane.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </GridPane.margin>
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <styleClass>
+                                                <String fx:value="blue-button" />
+                                                <String fx:value="shadow" />
+                                             </styleClass>
+                                          </Button>
+                                          <HBox alignment="CENTER" prefHeight="54.0" prefWidth="362.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                             <children>
+                                                <ComboBox fx:id="comboAgentType" onAction="#typeHandler" prefHeight="27.0" prefWidth="360.0" styleClass="category-combo" />
+                                             </children>
+                                             <styleClass>
+                                                <String fx:value="left-top-pane" />
+                                                <String fx:value="shadow" />
+                                             </styleClass>
+                                             <GridPane.margin>
+                                                <Insets bottom="10.0" top="10.0" />
+                                             </GridPane.margin>
+                                          </HBox>
+                                          <Label text="Type" textAlignment="CENTER" GridPane.rowIndex="5">
+                                             <font>
+                                                <Font name="Candara Light" size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="100.0" right="100.0" />
+                                       </VBox.margin>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                           </center>
+                           <left>
+                              <VBox prefHeight="662.0" prefWidth="800.0" styleClass="left-pane" stylesheets="@../style/style.css" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <HBox prefHeight="58.0" prefWidth="1200.0" styleClass="top-pane" stylesheets="@../style/style.css">
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="58.0" prefWidth="760.0" text="Agents" textFill="WHITE">
+                                             <font>
+                                                <Font name="Corbel Light" size="30.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="btnReloadAgents" mnemonicParsing="false" onAction="#reloadagentHandler" prefHeight="56.0" prefWidth="52.0" style="-fx-text-fill: white;" styleClass="top-pane" text="⟳">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <TableView fx:id="tblAgents" prefHeight="544.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+                                      <columns>
+                                        <TableColumn fx:id="colName" prefWidth="283.19997864961624" text="Name" />
+                                        <TableColumn fx:id="colPhone" minWidth="0.0" prefWidth="153.5999755859375" text="Phone" />
+                                          <TableColumn fx:id="colEmail" minWidth="0.0" prefWidth="239.20001220703125" text="Email" />
+                                          <TableColumn fx:id="colUsername" minWidth="0.0" prefWidth="98.39996337890625" text="Username" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                                 <BorderPane.margin>
+                                    <Insets bottom="10.0" left="10.0" top="10.0" />
+                                 </BorderPane.margin>
+                              </VBox>
+                           </left>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab closable="false" text="Account">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER" layoutX="118.0" layoutY="66.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label text="Account Management">
+                                 <font>
+                                    <Font name="Candara Light" size="24.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <GridPane maxWidth="510.0" minWidth="510.0" prefHeight="482.0" prefWidth="513.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.79998779296875" minWidth="10.0" prefWidth="110.39998779296874" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="610.2000122070312" minWidth="10.0" prefWidth="424.0000122070312" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="56.79996337890623" minHeight="10.0" prefHeight="27.199993896484386" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="103.20000610351559" minHeight="10.0" prefHeight="103.20000610351559" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="46.0" prefWidth="467.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <TextField fx:id="txtName" prefHeight="27.0" prefWidth="365.0" styleClass="transparent">
+                                             <font>
+                                                <Font name="Candara" size="14.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="left-top-pane" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <GridPane.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </GridPane.margin>
+                                    </HBox>
+                                    <Label text="Name" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Candara Light" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Phone" textAlignment="CENTER" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="Candara Light" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Email" textAlignment="CENTER" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="Candara Light" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Username" textAlignment="CENTER" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="Candara Light" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Password" textAlignment="CENTER" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font name="Candara Light" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox alignment="CENTER" prefHeight="46.0" prefWidth="467.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <children>
+                                          <TextField fx:id="txtPhone" prefHeight="27.0" prefWidth="365.0" styleClass="transparent">
+                                             <font>
+                                                <Font name="Candara" size="14.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="left-top-pane" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <GridPane.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </GridPane.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="46.0" prefWidth="467.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <children>
+                                          <TextField fx:id="txtEmail" prefHeight="27.0" prefWidth="365.0" styleClass="transparent">
+                                             <font>
+                                                <Font name="Candara" size="14.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="left-top-pane" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <GridPane.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </GridPane.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="46.0" prefWidth="467.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <children>
+                                          <TextField fx:id="txtUsername" editable="false" prefHeight="27.0" prefWidth="365.0" styleClass="transparent">
+                                             <font>
+                                                <Font name="Candara" size="14.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="left-top-pane" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <GridPane.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </GridPane.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="46.0" prefWidth="467.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                       <styleClass>
+                                          <String fx:value="left-top-pane" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <GridPane.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </GridPane.margin>
+                                       <children>
+                                          <PasswordField fx:id="txtPassword" prefHeight="26.0" prefWidth="365.0" styleClass="transparent">
+                                             <font>
+                                                <Font name="Candara" size="14.0" />
+                                             </font>
+                                          </PasswordField>
+                                       </children>
+                                    </HBox>
+                                    <Button fx:id="btnUpdateInfo" mnemonicParsing="false" onAction="#updateInfoHandler" prefHeight="36.0" prefWidth="472.0" text="Update Information" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                       <GridPane.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </GridPane.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="blue-button" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#logoutHandler" prefHeight="74.0" prefWidth="459.0" text="Log Out" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets left="10.0" right="10.0" top="50.0" />
+                                       </GridPane.margin>
+                                       <styleClass>
+                                          <String fx:value="search-button" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="btnReset" mnemonicParsing="false" onAction="#resetHandler" prefHeight="36.0" prefWidth="472.0" text="Reset" GridPane.rowIndex="5">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="orange-button" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="200.0" right="200.0" />
+                                 </VBox.margin>
+                              </GridPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

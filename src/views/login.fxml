@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="492.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="492.0" xmlns="http://javafx.com/javafx/10" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
    <children>
       <VBox alignment="CENTER" layoutX="321.0" layoutY="76.0" prefHeight="400.0" prefWidth="492.0" stylesheets="@../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -51,7 +51,7 @@
                   </Label>
                   <HBox alignment="CENTER" prefHeight="46.0" prefWidth="467.0" GridPane.columnIndex="1">
                      <children>
-                        <TextField fx:id="txtUsername" prefHeight="27.0" prefWidth="222.0" styleClass="transparent" text="natty">
+                        <TextField fx:id="txtUsername" prefHeight="27.0" prefWidth="222.0" styleClass="transparent">
                            <font>
                               <Font name="Candara" size="14.0" />
                            </font>
@@ -74,7 +74,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </GridPane.margin>
                      <children>
-                        <PasswordField fx:id="txtPassword" prefHeight="27.0" prefWidth="222.0" styleClass="transparent" text="natty1234">
+                        <PasswordField fx:id="txtPassword" prefHeight="27.0" prefWidth="222.0" styleClass="transparent">
                            <font>
                               <Font name="Candara" size="14.0" />
                            </font>

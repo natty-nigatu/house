@@ -39,6 +39,8 @@ public class Main extends Application {
             ex.printStackTrace();
         }
 
+        Message.client("Starting UI . . .");
+
         launch(args);
 
 

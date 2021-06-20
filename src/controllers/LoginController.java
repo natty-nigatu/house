@@ -68,7 +68,28 @@ public class LoginController {
             }
             else{
 
-                try {
+                Agent agent = Main.server.loadAgent(status);
+
+                if (agent.getType() == 0) { // admin
+
+                        Stage primaryStage = new Stage();
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        fxmlLoader.setLocation(getClass().getResource("../views/admin.fxml"));
+                        Parent root = fxmlLoader.load();
+                        primaryStage.setTitle("Admin Dashboard");
+
+                        AdminController controller = (AdminController) fxmlLoader.getController();
+                        controller.setAgent(agent);
+
+                        Scene scene = new Scene(root);
+                        primaryStage.setScene(scene);
+                        primaryStage.setMaximized(true);
+                        primaryStage.show();
+
+                        Stage stage = (Stage) btnBack.getScene().getWindow();
+                        stage.close();
+
+                } else {
 
                     Stage primaryStage = new Stage();
                     FXMLLoader fxmlLoader = new FXMLLoader();
@@ -76,8 +97,7 @@ public class LoginController {
                     Parent root = fxmlLoader.load();
                     primaryStage.setTitle("Rent a House");
 
-                    LoggedInController controller = (LoggedInController)fxmlLoader.getController();
-                    Agent agent = Main.server.loadAgent(status);
+                    LoggedInController controller = (LoggedInController) fxmlLoader.getController();
                     controller.setAgent(agent);
 
                     Scene scene = new Scene(root);
@@ -85,11 +105,9 @@ public class LoginController {
                     primaryStage.setMaximized(true);
                     primaryStage.show();
 
-                    Stage stage = (Stage)btnBack.getScene().getWindow();
+                    Stage stage = (Stage) btnBack.getScene().getWindow();
                     stage.close();
 
-                } catch (Exception ex){
-                    ex.printStackTrace();
                 }
 
             }
