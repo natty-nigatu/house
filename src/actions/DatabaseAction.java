@@ -34,10 +34,13 @@ public class DatabaseAction extends UnicastRemoteObject implements Database {
             Message.server("Connected to Database Successfully.");
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 
     public String getNextImage() throws RemoteException{
+
+        Message.client("Get Next Image Id Request.");
 
         //get current number add 1 save new number and return
         String query = "SELECT value FROM misc where name = 'image'";
@@ -99,7 +102,7 @@ public class DatabaseAction extends UnicastRemoteObject implements Database {
                 list.add(resultSet.getInt("id"));
             }
 
-            Message.server("Sending Listing Results.");
+            Message.server("Sending Listing Results . . .");
 
         } catch (Exception ex){
             ex.printStackTrace();
@@ -112,7 +115,7 @@ public class DatabaseAction extends UnicastRemoteObject implements Database {
     @Override
     public List<Integer> getListingsbyAgent(int agentId) throws RemoteException {
 
-        Message.client("Get Listing IDs by Agent Request.");
+        Message.client("Get Listing IDs Request.");
 
         List<Integer> list = new ArrayList<>();
         String query = "SELECT id FROM house WHERE agent = " + agentId;
@@ -126,7 +129,7 @@ public class DatabaseAction extends UnicastRemoteObject implements Database {
                 list.add(resultSet.getInt("id"));
             }
 
-            Message.server("Sending Listing Results.");
+            Message.server("Sending Listing Results . . .");
 
         } catch (Exception ex){
             ex.printStackTrace();
@@ -138,6 +141,8 @@ public class DatabaseAction extends UnicastRemoteObject implements Database {
 
     @Override
     public int login(String username, String password) throws RemoteException {
+
+        Message.client("Login Request.");
 
         String query = "SELECT id FROM agent WHERE username = ? AND password = ?";
         try {
@@ -218,6 +223,7 @@ public class DatabaseAction extends UnicastRemoteObject implements Database {
                 agent.setPhone(resultSet.getInt("phone"));
                 agent.setUsername(resultSet.getString("username"));
                 agent.setPassword(resultSet.getString("password"));
+                agent.setType(resultSet.getInt("type"));
 
                 return agent;
 
@@ -232,6 +238,8 @@ public class DatabaseAction extends UnicastRemoteObject implements Database {
 
     @Override
     public int saveAgent(Agent agent) throws RemoteException {
+
+        Message.client("Save Agent Request.");
 
         String query = "UPDATE agent SET name = ?, phone = ?, email = ?, username = ?, password = ? WHERE id = ?";
 
@@ -257,6 +265,8 @@ public class DatabaseAction extends UnicastRemoteObject implements Database {
 
     @Override
     public int saveHouse(House house) throws RemoteException {
+
+        Message.client("Save House Request.");
 
         String query = "UPDATE house SET title = ?, price = ?, category = ?, features = ?, agent = ?, image = ?, location = ? WHERE id = ?";
 
@@ -285,6 +295,7 @@ public class DatabaseAction extends UnicastRemoteObject implements Database {
     @Override
     public int addHouse(House house) throws RemoteException {
 
+        Message.client("Add House Request.");
         String query = "INSERT INTO house (title, price, category, features, agent, image, location) Values (?, ?, ?, ?, ?, ?, ?)";
 
         try {
@@ -312,6 +323,7 @@ public class DatabaseAction extends UnicastRemoteObject implements Database {
     @Override
     public int deleteHouse(int id) throws RemoteException {
 
+        Message.client("Delete House Request.");
         String query = "DELETE FROM house WHERE id  = " + id;
 
         try{
@@ -324,6 +336,56 @@ public class DatabaseAction extends UnicastRemoteObject implements Database {
         }
 
         return -1;
+    }
+
+    @Override
+    public int addAgent(Agent agent) throws RemoteException {
+
+        Message.client("Add Agent Request.");
+        String query = "INSERT INTO agent (name, phone, email, username, password, type) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try {
+
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, agent.getName());
+            stmt.setInt(2, agent.getPhone());
+            stmt.setString(3, agent.getEmail());
+            stmt.setString(4, agent.getUsername());
+            stmt.setString(5, agent.getPassword());
+            stmt.setInt(6, agent.getType());
+
+            return stmt.executeUpdate();
+
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+        return -1;
+    }
+
+    @Override
+    public List<Integer> getAgents() throws RemoteException {
+
+        Message.client("Get Agent IDs Request.");
+        List<Integer> list = new ArrayList<>();
+        String query = "SELECT id FROM agent";
+
+        try {
+            Statement stmt = connection.createStatement();
+
+            ResultSet resultSet = stmt.executeQuery(query);
+
+            while (resultSet.next()){
+                list.add(resultSet.getInt("id"));
+            }
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+
+        }
+
+        return list;
     }
 
 }

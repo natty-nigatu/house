@@ -11,8 +11,11 @@ public class Main {
 
 
         try {
+            Message.server("Connecting to Database . . .");
             DatabaseAction db = new DatabaseAction();
             db.createConnection();
+
+            Message.server("Starting Database Server . . .");
 
             Registry registry = LocateRegistry.createRegistry(8000);
             registry.rebind("database", db);

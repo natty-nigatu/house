@@ -19,5 +19,7 @@ public interface Database extends Remote {
     int saveHouse(House house) throws RemoteException;
     int addHouse(House house) throws RemoteException;
     int deleteHouse(int id) throws RemoteException;
+    int addAgent(Agent agent) throws RemoteException;
+    List<Integer> getAgents() throws RemoteException;
 
 }
